@@ -1,18 +1,21 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import babyNamesData from "./babyNamesData.json";
+import BabyName from "./BabyName";
 
-function App() {
+const App = () => {
   return (
     <div className="App">
-      {babyNamesData.map((babyName) => (
-        <li key={babyName.id}>
-          {babyName.name} - {babyName.sex === "f" ? "female" : "male"}
-        </li>
-      ))}
+      <h1 className="Title">Baby Names</h1>
+      <ul className="List">
+        {babyNamesData
+          .sort((a, b) => a.name.localeCompare(b.name))
+          .map((babyName, id) => {
+            return <BabyName key={id} value={babyName} />;
+          })}
+      </ul>
     </div>
   );
-}
+};
 
 export default App;
